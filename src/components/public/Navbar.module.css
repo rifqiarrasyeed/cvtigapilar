@@ -1,0 +1,201 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: var(--navbar-height);
+  display: flex;
+  align-items: center;
+  background: rgba(247, 243, 237, 0.8);
+  backdrop-filter: blur(0px);
+  transition: all var(--transition-base);
+}
+
+.header.scrolled {
+  background: rgba(247, 243, 237, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.nav {
+  width: 100%;
+  max-width: var(--max-width-wide);
+  margin: 0 auto;
+  padding: 0 var(--space-xl);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Brand */
+.brand {
+  text-decoration: none;
+}
+
+.brandText {
+  font-family: var(--font-serif);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--color-charcoal);
+  text-transform: uppercase;
+}
+
+/* Links */
+.links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.link {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  padding: var(--space-sm) var(--space-md);
+  position: relative;
+  letter-spacing: 0.01em;
+  transition: color var(--transition-fast);
+}
+
+.link::before {
+  content: '·';
+  position: absolute;
+  left: -2px;
+  color: var(--color-border);
+  pointer-events: none;
+}
+
+.link:first-child::before {
+  display: none;
+}
+
+.link:hover {
+  color: var(--color-charcoal);
+}
+
+.linkActive {
+  color: var(--color-charcoal);
+  font-weight: 500;
+}
+
+.linkActive::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: var(--space-md);
+  right: var(--space-md);
+  height: 1px;
+  background: var(--color-terracotta);
+}
+
+/* WA Button */
+.waButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  margin-left: var(--space-md);
+  transition: all var(--transition-fast);
+}
+
+.waButton:hover {
+  border-color: #25D366;
+  color: #25D366;
+  background: rgba(37, 211, 102, 0.05);
+}
+
+/* Mobile */
+.menuToggle {
+  display: none;
+  color: var(--color-charcoal);
+  padding: var(--space-sm);
+}
+
+.overlay {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .nav {
+    padding: 0 var(--space-md);
+  }
+
+  .menuToggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 110;
+  }
+
+  .links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    height: 100dvh;
+    background: var(--color-cream);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: calc(var(--navbar-height) + var(--space-xl)) var(--space-xl) var(--space-xl);
+    gap: 0;
+    border-left: 1px solid var(--color-border-light);
+    transition: right var(--transition-slow);
+    z-index: 105;
+    overflow-y: auto;
+  }
+
+  .linksOpen {
+    right: 0;
+  }
+
+  .link {
+    font-size: var(--text-base);
+    padding: var(--space-md) 0;
+    width: 100%;
+    border-bottom: 1px solid var(--color-border-light);
+  }
+
+  .link::before {
+    display: none;
+  }
+
+  .linkActive::after {
+    left: 0;
+    right: auto;
+    width: 20px;
+  }
+
+  .waButton {
+    margin-left: 0;
+    margin-top: var(--space-lg);
+    width: 100%;
+    border-radius: var(--radius-sm);
+    height: 44px;
+    font-size: var(--text-sm);
+    gap: var(--space-sm);
+  }
+
+  .waButton::after {
+    content: 'WhatsApp';
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+  }
+
+  .overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(42, 42, 42, 0.3);
+    z-index: 101;
+  }
+}

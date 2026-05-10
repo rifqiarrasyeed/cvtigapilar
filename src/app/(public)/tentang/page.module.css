@@ -1,0 +1,43 @@
+.page { padding: var(--space-3xl) 0 var(--space-5xl); }
+.container { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--space-xl); }
+.title { font-family: var(--font-serif); font-size: var(--text-4xl); font-weight: 500; margin-top: var(--space-sm); }
+
+/* About */
+.aboutSection { margin-top: var(--space-3xl); }
+.aboutGrid { display: grid; grid-template-columns: 0.25fr 0.75fr; gap: var(--space-3xl); }
+.aboutLeft {}
+.aboutRight {}
+.aboutLead { font-family: var(--font-serif); font-style: italic; font-size: var(--text-xl); line-height: 1.7; color: var(--color-text-secondary); max-width: 640px; }
+.aboutBody { font-size: var(--text-base); color: var(--color-text-secondary); line-height: 1.8; margin-top: var(--space-lg); max-width: 640px; }
+.aboutBody em { color: var(--color-terracotta); font-style: normal; }
+.addressBlock { display: flex; align-items: flex-start; gap: var(--space-md); margin-top: var(--space-2xl); padding: var(--space-lg); background: var(--color-cream-dark); border-radius: var(--radius-sm); }
+.addressIcon { color: var(--color-terracotta); flex-shrink: 0; margin-top: 2px; }
+.addressLabel { display: block; font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-text-muted); }
+.addressText { display: block; font-size: var(--text-sm); color: var(--color-text-primary); margin-top: 2px; }
+
+/* VM */
+.vmSection { margin-top: var(--space-4xl); padding-top: var(--space-3xl); border-top: 1px solid var(--color-border); }
+.vmGrid { display: grid; grid-template-columns: 0.25fr 0.75fr; gap: var(--space-3xl); }
+.vmLeft {}
+.vmRight { display: flex; flex-direction: column; gap: var(--space-2xl); }
+.vmCard { padding: var(--space-xl); border: 1px solid var(--color-border-light); border-radius: var(--radius-md); }
+.vmIcon { color: var(--color-terracotta); margin-bottom: var(--space-md); }
+.vmTitle { font-family: var(--font-serif); font-size: var(--text-lg); font-weight: 500; }
+.vmText { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.7; margin-top: var(--space-sm); }
+.missionList { display: flex; flex-direction: column; gap: var(--space-sm); margin-top: var(--space-sm); padding-left: var(--space-lg); }
+.missionList li { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.6; }
+
+/* Values */
+.valuesSection { margin-top: var(--space-4xl); padding-top: var(--space-3xl); border-top: 1px solid var(--color-border); }
+.sectionHeader { margin-bottom: var(--space-3xl); }
+.valuesGrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-xl); }
+.valueCard { text-align: center; padding: var(--space-2xl) var(--space-lg); }
+.valueIcon { color: var(--color-terracotta); margin-bottom: var(--space-md); }
+.valueTitle { font-family: var(--font-serif); font-size: var(--text-md); font-weight: 500; }
+.valueDesc { font-size: var(--text-sm); color: var(--color-text-muted); margin-top: var(--space-sm); line-height: 1.6; }
+
+@media (max-width: 768px) {
+  .container { padding: 0 var(--space-md); }
+  .aboutGrid, .vmGrid { grid-template-columns: 1fr; gap: var(--space-lg); }
+  .valuesGrid { grid-template-columns: repeat(2, 1fr); gap: var(--space-md); }
+}

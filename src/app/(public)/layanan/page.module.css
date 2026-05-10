@@ -1,0 +1,39 @@
+.page { padding: var(--space-3xl) 0 var(--space-5xl); }
+.container { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--space-xl); }
+.title { font-family: var(--font-serif); font-size: var(--text-4xl); font-weight: 500; margin-top: var(--space-sm); }
+.subtitle { font-size: var(--text-md); color: var(--color-text-secondary); max-width: 580px; line-height: 1.7; margin-top: var(--space-md); }
+
+/* Pricing */
+.pricingGrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-lg); margin-top: var(--space-3xl); }
+.card { padding: var(--space-2xl); border: 1px solid var(--color-border-light); border-radius: var(--radius-md); background: var(--color-white); position: relative; transition: all var(--transition-base); height: 100%; display: flex; flex-direction: column; }
+.card:hover { border-color: var(--color-border); transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.cardPopular { border-color: var(--color-terracotta); }
+.popularRibbon { position: absolute; top: -1px; right: var(--space-lg); font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; background: var(--color-terracotta); color: white; padding: 4px 12px; border-radius: 0 0 var(--radius-sm) var(--radius-sm); }
+.cardName { font-family: var(--font-serif); font-size: var(--text-xl); font-weight: 600; }
+.cardSubtitle { font-size: var(--text-xs); color: var(--color-text-muted); margin-top: var(--space-xs); }
+.cardPrice { margin-top: var(--space-xl); }
+.priceValue { font-family: var(--font-serif); font-size: var(--text-2xl); font-weight: 600; color: var(--color-charcoal); }
+.priceUnit { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-text-muted); margin-left: var(--space-xs); }
+.cardDivider { width: 100%; height: 1px; background: var(--color-border-light); margin: var(--space-xl) 0; }
+.featureList { display: flex; flex-direction: column; gap: var(--space-sm); margin-bottom: var(--space-xl); flex: 1; }
+.featureItem { display: flex; align-items: flex-start; gap: var(--space-sm); font-size: var(--text-sm); color: var(--color-text-secondary); }
+.featureItem svg { color: var(--color-sage); flex-shrink: 0; margin-top: 2px; }
+.cardCta { display: flex; align-items: center; justify-content: center; gap: var(--space-sm); width: 100%; padding: var(--space-md); font-family: var(--font-sans); font-size: var(--text-sm); font-weight: 500; color: var(--color-terracotta); border: 1px solid var(--color-border); border-radius: var(--radius-sm); transition: all var(--transition-base); }
+.cardCta:hover { border-color: var(--color-terracotta); background: rgba(184,101,74,0.04); }
+.cardCtaPopular { background: var(--color-terracotta); color: white; border-color: var(--color-terracotta); }
+.cardCtaPopular:hover { background: var(--color-terracotta-dark); }
+
+/* Process */
+.processSection { margin-top: var(--space-5xl); padding-top: var(--space-3xl); border-top: 1px solid var(--color-border); }
+.processHeader { margin-bottom: var(--space-3xl); }
+.processSteps { display: flex; flex-direction: column; gap: var(--space-xl); max-width: 600px; }
+.stepItem { display: flex; gap: var(--space-xl); align-items: flex-start; }
+.stepNumber { font-family: var(--font-mono); font-size: var(--text-sm); color: var(--color-terracotta); min-width: 28px; font-weight: 600; padding-top: 2px; }
+.stepTitle { font-family: var(--font-serif); font-size: var(--text-md); font-weight: 500; color: var(--color-charcoal); }
+.stepDesc { font-size: var(--text-sm); color: var(--color-text-secondary); margin-top: var(--space-xs); line-height: 1.6; }
+
+@media (max-width: 1024px) { .pricingGrid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 768px) {
+  .container { padding: 0 var(--space-md); }
+  .pricingGrid { grid-template-columns: 1fr; }
+}
