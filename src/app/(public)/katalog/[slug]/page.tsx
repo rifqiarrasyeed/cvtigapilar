@@ -10,9 +10,15 @@ import { client } from '@/sanity/lib/client';
 import { relatedBooksQuery } from '@/sanity/lib/queries';
 import styles from './page.module.css';
 
+export const dynamicParams = true;
+
 export async function generateStaticParams() {
-  const slugs = await getBookSlugs();
-  return slugs.map((s) => ({ slug: s.slug }));
+  try {
+    const slugs = await getBookSlugs();
+    return slugs.map((s) => ({ slug: s.slug }));
+  } catch {
+    return [];
+  }
 }
 
 export default async function BookDetailPage({ params }: { params: Promise<{ slug: string }> }) {
