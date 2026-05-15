@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { Search, SlidersHorizontal } from 'lucide-react';
+import { Search, SlidersHorizontal, BookOpen } from 'lucide-react';
 import BookCard from '@/components/public/BookCard';
 import ScrollReveal from '@/components/public/ScrollReveal';
 import type { BookSummary, Category } from '@/lib/types';
@@ -37,29 +37,41 @@ export default function KatalogContent({ books, categories }: Props) {
     if (sortBy === 'az') {
       result.sort((a, b) => a.title.localeCompare(b.title));
     }
-    // default 'newest' is already sorted by the GROQ query
 
     return result;
   }, [books, activeCategory, searchQuery, sortBy]);
 
   return (
     <div className={styles.page}>
-      <div className={styles.container}>
-        {/* Header */}
-        <ScrollReveal>
-          <div className={styles.header}>
-            <nav className="breadcrumb">
-              <a href="/">beranda</a>
-              <span className="breadcrumb__separator">/</span>
-              <span>katalog</span>
-            </nav>
-            <h1 className={styles.title}>Katalog</h1>
-            <p className={styles.subtitle}>—koleksi lengkap buku terbitan kami</p>
-          </div>
-        </ScrollReveal>
+      {/* === HERO === */}
+      <section className={styles.hero}>
+        <div className={styles.heroDecor} />
+        <div className={styles.heroInner}>
+          <ScrollReveal direction="left">
+            <div>
+              <nav className="breadcrumb">
+                <a href="/">beranda</a>
+                <span className="breadcrumb__separator">/</span>
+                <span>katalog</span>
+              </nav>
+              <h1 className={styles.title}>
+                <span className={styles.titleLine1}>Katalog</span>
+                <span className={styles.titleLine2}>Buku</span>
+              </h1>
+            </div>
+          </ScrollReveal>
+          <ScrollReveal direction="right" delay={200}>
+            <p className={styles.subtitle}>
+              Jelajahi koleksi lengkap buku terbitan kami — dari monograf, buku ajar, 
+              hingga buku referensi akademis.
+            </p>
+          </ScrollReveal>
+        </div>
+      </section>
 
+      <div className={styles.container}>
         {/* Filter Bar */}
-        <ScrollReveal delay={100}>
+        <ScrollReveal delay={100} direction="scale">
           <div className={styles.filterBar}>
             <div className={styles.categoryPills}>
               <button
@@ -112,6 +124,7 @@ export default function KatalogContent({ books, categories }: Props) {
               <ScrollReveal
                 key={book._id}
                 delay={Math.min(i * 80, 400)}
+                direction={i % 3 === 0 ? 'left' : i % 3 === 1 ? 'scale' : 'right'}
                 className={`${styles.gridItem} ${i === 0 ? styles.gridItemLarge : ''}`}
               >
                 <BookCard
@@ -123,6 +136,9 @@ export default function KatalogContent({ books, categories }: Props) {
           </div>
         ) : (
           <div className={styles.empty}>
+            <div className={styles.emptyIcon}>
+              <BookOpen size={40} />
+            </div>
             <p className={styles.emptyText}>
               {searchQuery
                 ? `Tidak ada buku ditemukan untuk pencarian "${searchQuery}"`

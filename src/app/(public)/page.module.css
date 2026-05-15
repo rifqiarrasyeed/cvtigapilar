@@ -8,6 +8,37 @@
   display: flex;
   align-items: center;
   padding: var(--space-4xl) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.heroDecor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.heroGradient {
+  position: absolute;
+  top: -30%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(184, 101, 74, 0.06) 0%, transparent 70%);
+  animation: float-gentle 12s ease-in-out infinite;
+}
+
+.heroPattern {
+  position: absolute;
+  bottom: 10%;
+  left: 5%;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  opacity: 0.3;
+  animation: float-gentle 10s ease-in-out infinite reverse;
 }
 
 .heroInner {
@@ -18,6 +49,7 @@
   grid-template-columns: 1.1fr 0.9fr;
   gap: var(--space-4xl);
   align-items: center;
+  position: relative;
 }
 
 .heroLabel {
@@ -85,15 +117,18 @@
   font-family: var(--font-sans);
   font-size: var(--text-sm);
   font-weight: 500;
-  color: var(--color-terracotta);
-  border-bottom: 1px solid var(--color-terracotta);
-  padding-bottom: 4px;
+  color: var(--color-white);
+  background: var(--color-terracotta);
+  padding: var(--space-md) var(--space-xl);
+  border-radius: var(--radius-sm);
   transition: all var(--transition-base);
   letter-spacing: 0.02em;
 }
 
 .heroCtaPrimary:hover {
-  gap: var(--space-md);
+  background: var(--color-terracotta-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow-terracotta);
 }
 
 .heroCtaSecondary {
@@ -101,10 +136,13 @@
   font-size: var(--text-sm);
   color: var(--color-text-muted);
   transition: color var(--transition-fast);
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
 }
 
 .heroCtaSecondary:hover {
   color: var(--color-charcoal);
+  border-bottom-color: var(--color-charcoal);
 }
 
 /* Hero Visual — Floating Books */
@@ -175,10 +213,13 @@
   left: 0;
   transform: rotate(-6deg);
   z-index: 1;
+  animation: float-book 6s ease-in-out infinite;
+  --book-rotate: -6deg;
 }
 
 .bookFloat1:hover {
-  transform: rotate(-3deg) translateY(-8px);
+  transform: rotate(-3deg) translateY(-8px) !important;
+  animation: none;
 }
 
 .bookFloat2 {
@@ -186,10 +227,13 @@
   left: 80px;
   transform: rotate(2deg);
   z-index: 2;
+  animation: float-book 7s ease-in-out infinite 0.5s;
+  --book-rotate: 2deg;
 }
 
 .bookFloat2:hover {
-  transform: rotate(0deg) translateY(-8px);
+  transform: rotate(0deg) translateY(-8px) !important;
+  animation: none;
 }
 
 .bookFloat2 .bookCover {
@@ -213,10 +257,13 @@
   left: 160px;
   transform: rotate(-2deg);
   z-index: 3;
+  animation: float-book 8s ease-in-out infinite 1s;
+  --book-rotate: -2deg;
 }
 
 .bookFloat3:hover {
-  transform: rotate(1deg) translateY(-8px);
+  transform: rotate(1deg) translateY(-8px) !important;
+  animation: none;
 }
 
 .bookFloat3 .bookCover {
@@ -319,6 +366,21 @@
 .statsSection {
   padding: var(--space-3xl) 0;
   background: var(--color-cream-dark);
+  position: relative;
+  overflow: hidden;
+}
+
+.statsSection::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 40px,
+    rgba(42, 42, 42, 0.01) 40px,
+    rgba(42, 42, 42, 0.01) 41px
+  );
 }
 
 .statsInner {
@@ -328,6 +390,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: var(--space-xl);
+  position: relative;
 }
 
 .statItem {
@@ -365,12 +428,27 @@
 .collabBanner {
   background: var(--color-charcoal);
   padding: var(--space-4xl) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.collabBanner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(184, 101, 74, 0.08) 0%, transparent 70%);
+  transform: translate(30%, -30%);
 }
 
 .collabInner {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 var(--space-xl);
+  position: relative;
 }
 
 .collabContent {
@@ -450,6 +528,7 @@
 .collabCta:hover {
   border-color: var(--color-cream);
   background: rgba(247, 243, 237, 0.05);
+  transform: translateY(-2px);
 }
 
 /* === SERVICES === */
@@ -472,20 +551,21 @@
 .serviceCard {
   padding: var(--space-2xl) var(--space-xl);
   border: 1px solid var(--color-border-light);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-xl);
   position: relative;
   transition: all var(--transition-base);
   background: var(--color-white);
 }
 
 .serviceCard:hover {
-  border-color: var(--color-border);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  border-color: transparent;
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
 }
 
 .servicePopular {
   border-color: var(--color-terracotta);
+  background: linear-gradient(180deg, rgba(184, 101, 74, 0.02) 0%, var(--color-white) 100%);
 }
 
 .popularTag {
@@ -581,6 +661,97 @@
   background: rgba(184, 101, 74, 0.04);
 }
 
+/* === TESTIMONIAL === */
+.testimonialSection {
+  padding: var(--space-4xl) 0;
+  background: var(--color-cream-dark);
+}
+
+.testimonialInner {
+  max-width: var(--max-width-narrow);
+  margin: 0 auto;
+  padding: 0 var(--space-xl);
+}
+
+.testimonialCard {
+  background: var(--color-white);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-3xl);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonialCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-terracotta), var(--color-sage), var(--color-terracotta));
+  background-size: 200% 100%;
+  animation: gradient-shift 4s linear infinite;
+}
+
+.testimonialStars {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  color: var(--color-warning);
+  margin-bottom: var(--space-xl);
+}
+
+.testimonialQuote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--text-lg);
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+  max-width: 600px;
+  margin: 0 auto var(--space-2xl);
+}
+
+.testimonialAuthor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+}
+
+.testimonialAvatar {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--color-terracotta), var(--color-terracotta-light));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  flex-shrink: 0;
+}
+
+.testimonialName {
+  display: block;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  color: var(--color-charcoal);
+}
+
+.testimonialRole {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
 /* === CTA SECTION === */
 .ctaSection {
   padding: var(--space-5xl) 0;
@@ -620,21 +791,9 @@
 
 /* === RESPONSIVE === */
 @media (max-width: 1024px) {
-  .servicesGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .hero {
-    min-height: auto;
-    padding: var(--space-3xl) 0;
-  }
-
   .heroInner {
     grid-template-columns: 1fr;
     gap: var(--space-2xl);
-    padding: 0 var(--space-md);
   }
 
   .heroVisual {
@@ -642,35 +801,13 @@
   }
 
   .bookStack {
-    width: 280px;
-    height: 340px;
+    width: 300px;
+    height: 360px;
     margin: 0 auto;
-  }
-
-  .bookCover {
-    width: 140px;
-    height: 200px;
-  }
-
-  .heroCtas {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--space-md);
-  }
-
-  .aboutInner {
-    grid-template-columns: 1fr;
-    gap: var(--space-lg);
-    padding: 0 var(--space-md);
-  }
-
-  .booksInner {
-    padding: 0 var(--space-md);
   }
 
   .booksGrid {
     grid-template-columns: 1fr 1fr;
-    gap: var(--space-lg);
   }
 
   .bookFeatured {
@@ -682,19 +819,13 @@
     grid-column: span 2;
   }
 
-  .bookRegular {
-    grid-column: span 1;
-  }
-
   .statsInner {
     grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-md);
-    padding: 0 var(--space-md);
   }
 
   .collabContent {
     grid-template-columns: 1fr;
-    gap: var(--space-xl);
+    gap: var(--space-2xl);
   }
 
   .collabRight {
@@ -710,10 +841,96 @@
   }
 
   .servicesGrid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-bottom: var(--space-md);
+    gap: var(--space-lg);
+  }
+
+  .servicesGrid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .servicesGrid > * {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    width: 320px;
+  }
+
+  .aboutInner {
     grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: auto;
+    padding: var(--space-3xl) 0;
+  }
+
+  .heroInner {
+    padding: 0 var(--space-md);
+  }
+
+  .bookStack {
+    width: 260px;
+    height: 320px;
+  }
+
+  .bookCover {
+    width: 140px;
+    height: 200px;
+  }
+
+  .heroCtas {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-md);
+  }
+
+  .heroCtaPrimary {
+    justify-content: center;
+  }
+
+  .heroCtaSecondary {
+    text-align: center;
+  }
+
+  .aboutInner {
+    padding: 0 var(--space-md);
+  }
+
+  .booksInner {
+    padding: 0 var(--space-md);
+  }
+
+  .booksGrid {
+    gap: var(--space-lg);
+  }
+
+  .statsInner {
+    gap: var(--space-md);
+    padding: 0 var(--space-md);
+  }
+
+  .servicesGrid > * {
+    width: 280px;
   }
 
   .servicesInner {
+    padding: 0 var(--space-md);
+  }
+
+  .testimonialCard {
+    padding: var(--space-2xl) var(--space-lg);
+  }
+
+  .testimonialInner {
     padding: 0 var(--space-md);
   }
 
@@ -723,9 +940,65 @@
 
   .ctaButtons {
     flex-direction: column;
+    align-items: stretch;
   }
 
   .ctaInner {
     padding: 0 var(--space-md);
   }
+
+  .collabInner {
+    padding: 0 var(--space-md);
+  }
+
+  .sectionHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-md);
+  }
 }
+
+@media (max-width: 480px) {
+  .hero {
+    padding: var(--space-2xl) 0;
+  }
+
+  .bookStack {
+    width: 220px;
+    height: 280px;
+  }
+
+  .bookCover {
+    width: 120px;
+    height: 170px;
+  }
+
+  .statsSection {
+    padding: var(--space-2xl) 0;
+  }
+
+  .statItem {
+    padding: var(--space-md);
+  }
+
+  .statNumber {
+    font-size: var(--text-2xl);
+  }
+
+  .collabBanner {
+    padding: var(--space-2xl) 0;
+  }
+
+  .servicesGrid > * {
+    width: 85vw;
+  }
+
+  .testimonialQuote {
+    font-size: var(--text-base);
+  }
+
+  .ctaSection {
+    padding: var(--space-3xl) 0;
+  }
+}
+

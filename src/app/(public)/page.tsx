@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowRight, BookOpen, Users, Award, CheckCircle2, MessageCircle } from 'lucide-react';
+import { ArrowRight, BookOpen, Users, Award, CheckCircle2, MessageCircle, Sparkles, Star } from 'lucide-react';
 import BookCard from '@/components/public/BookCard';
 import ScrollReveal from '@/components/public/ScrollReveal';
 import { getFeaturedBooks, getAllCollaborations, getAllServicePackages, getSiteStats } from '@/lib/data';
@@ -24,25 +24,29 @@ export default async function HomePage() {
     <>
       {/* === HERO === */}
       <section className={styles.hero}>
+        <div className={styles.heroDecor}>
+          <div className={styles.heroGradient} />
+          <div className={styles.heroPattern} />
+        </div>
         <div className={styles.heroInner}>
           <div className={styles.heroContent}>
-            <ScrollReveal>
+            <ScrollReveal direction="left">
               <span className={styles.heroLabel}>CV Tiga Pilar · Malang</span>
             </ScrollReveal>
-            <ScrollReveal delay={100}>
+            <ScrollReveal direction="left" delay={100}>
               <h1 className={styles.heroTitle}>
                 <span className={styles.heroLine1}>Menerbitkan</span>
                 <span className={styles.heroLine2}>Karya Ilmiah</span>
                 <span className={styles.heroLine3}>Berkualitas</span>
               </h1>
             </ScrollReveal>
-            <ScrollReveal delay={200}>
+            <ScrollReveal direction="left" delay={200}>
               <p className={styles.heroSubtitle}>
                 Penerbit buku akademis profesional dengan layanan ISBN, HKI, 
                 dan pendaftaran Perpustakaan Nasional.
               </p>
             </ScrollReveal>
-            <ScrollReveal delay={300}>
+            <ScrollReveal direction="left" delay={300}>
               <div className={styles.heroCtas}>
                 <Link href="/katalog" className={styles.heroCtaPrimary}>
                   Jelajahi Katalog <ArrowRight size={16} />
@@ -55,7 +59,7 @@ export default async function HomePage() {
           </div>
 
           <div className={styles.heroVisual}>
-            <ScrollReveal delay={200}>
+            <ScrollReveal direction="right" delay={200}>
               <div className={styles.bookStack}>
                 <div className={`${styles.bookFloat} ${styles.bookFloat1}`}>
                   <div className={styles.bookCover}>
@@ -87,13 +91,13 @@ export default async function HomePage() {
       {/* === ABOUT STRIP === */}
       <section className={styles.aboutStrip}>
         <div className={styles.aboutInner}>
-          <ScrollReveal>
+          <ScrollReveal direction="left">
             <div className={styles.aboutLeft}>
               <span className="section-number">01</span>
               <span className="section-label">Tentang Kami</span>
             </div>
           </ScrollReveal>
-          <ScrollReveal delay={150}>
+          <ScrollReveal direction="right" delay={150}>
             <div className={styles.aboutRight}>
               <p className={styles.aboutText}>
                 CV Tiga Pilar adalah penerbit buku akademis yang berlokasi di Malang, 
@@ -113,7 +117,7 @@ export default async function HomePage() {
       {displayBooks.length > 0 && (
         <section className={styles.booksSection}>
           <div className={styles.booksInner}>
-            <ScrollReveal>
+            <ScrollReveal direction="left">
               <div className={styles.sectionHeader}>
                 <div>
                   <span className="section-number">02</span>
@@ -127,19 +131,19 @@ export default async function HomePage() {
             
             <div className={styles.booksGrid}>
               {displayBooks.slice(0, 1).map((book) => (
-                <ScrollReveal key={book._id} delay={100} className={styles.bookFeatured}>
+                <ScrollReveal key={book._id} delay={100} direction="left" className={styles.bookFeatured}>
                   <BookCard book={book} size="large" />
                 </ScrollReveal>
               ))}
               <div className={styles.booksSmallStack}>
                 {displayBooks.slice(1, 3).map((book, i) => (
-                  <ScrollReveal key={book._id} delay={150 + i * 100}>
+                  <ScrollReveal key={book._id} delay={150 + i * 100} direction="right">
                     <BookCard book={book} size="small" />
                   </ScrollReveal>
                 ))}
               </div>
               {displayBooks.slice(3, 6).map((book, i) => (
-                <ScrollReveal key={book._id} delay={200 + i * 100} className={styles.bookRegular}>
+                <ScrollReveal key={book._id} delay={200 + i * 100} direction="scale" className={styles.bookRegular}>
                   <BookCard book={book} size="medium" />
                 </ScrollReveal>
               ))}
@@ -157,7 +161,7 @@ export default async function HomePage() {
             { number: '100%', label: 'Ber-ISBN', icon: Award },
             { number: stats.categoryCount > 0 ? `${stats.categoryCount}+` : '50+', label: 'Kategori', icon: CheckCircle2 },
           ].map((stat, i) => (
-            <ScrollReveal key={stat.label} delay={i * 100}>
+            <ScrollReveal key={stat.label} delay={i * 100} direction="scale">
               <div className={styles.statItem}>
                 <stat.icon size={20} className={styles.statIcon} />
                 <span className={styles.statNumber}>{stat.number}</span>
@@ -171,7 +175,7 @@ export default async function HomePage() {
       {/* === COLLABORATION BANNER === */}
       <section className={styles.collabBanner}>
         <div className={styles.collabInner}>
-          <ScrollReveal>
+          <ScrollReveal direction="left">
             <div className={styles.collabContent}>
               <div className={styles.collabLeft}>
                 <span className="section-number" style={{ color: 'rgba(247,243,237,0.15)' }}>03</span>
@@ -183,27 +187,31 @@ export default async function HomePage() {
               </div>
               <div className={styles.collabRight}>
                 {activeCollabs.length > 0 && (
-                  <div className={styles.collabPreview}>
-                    <span className={styles.collabSlotsLabel}>
-                      {activeCollabs[0].filledChapters}/{activeCollabs[0].totalChapters} Slot Terisi
-                    </span>
-                    <div className={styles.collabProgressBar}>
-                      <div
-                        className={styles.collabProgressFill}
-                        style={{
-                          width: `${
-                            ((activeCollabs[0].filledChapters || 0) /
-                              (activeCollabs[0].totalChapters || 1)) *
-                            100
-                          }%`,
-                        }}
-                      />
+                  <ScrollReveal direction="right" delay={200}>
+                    <div className={styles.collabPreview}>
+                      <span className={styles.collabSlotsLabel}>
+                        {activeCollabs[0].filledChapters}/{activeCollabs[0].totalChapters} Slot Terisi
+                      </span>
+                      <div className={styles.collabProgressBar}>
+                        <div
+                          className={styles.collabProgressFill}
+                          style={{
+                            width: `${
+                              ((activeCollabs[0].filledChapters || 0) /
+                                (activeCollabs[0].totalChapters || 1)) *
+                              100
+                            }%`,
+                          }}
+                        />
+                      </div>
                     </div>
-                  </div>
+                  </ScrollReveal>
                 )}
-                <Link href="/kolaborasi" className={styles.collabCta}>
-                  Lihat Tema Terbuka <ArrowRight size={16} />
-                </Link>
+                <ScrollReveal direction="right" delay={300}>
+                  <Link href="/kolaborasi" className={styles.collabCta}>
+                    Lihat Tema Terbuka <ArrowRight size={16} />
+                  </Link>
+                </ScrollReveal>
               </div>
             </div>
           </ScrollReveal>
@@ -214,7 +222,7 @@ export default async function HomePage() {
       {packages.length > 0 && (
         <section className={styles.servicesSection}>
           <div className={styles.servicesInner}>
-            <ScrollReveal>
+            <ScrollReveal direction="right">
               <div className={styles.sectionHeader}>
                 <div>
                   <span className="section-number">04</span>
@@ -228,7 +236,7 @@ export default async function HomePage() {
 
             <div className={styles.servicesGrid}>
               {packages.map((pkg, i) => (
-                <ScrollReveal key={pkg._id} delay={i * 100}>
+                <ScrollReveal key={pkg._id} delay={i * 100} direction={i % 2 === 0 ? 'left' : 'right'}>
                   <div className={`${styles.serviceCard} ${pkg.isPopular ? styles.servicePopular : ''}`}>
                     {pkg.isPopular && <span className={styles.popularTag}>Populer</span>}
                     <h3 className={styles.serviceName}>{pkg.name}</h3>
@@ -265,10 +273,39 @@ export default async function HomePage() {
         </section>
       )}
 
+      {/* === TESTIMONIAL === */}
+      <section className={styles.testimonialSection}>
+        <div className={styles.testimonialInner}>
+          <ScrollReveal direction="scale">
+            <div className={styles.testimonialCard}>
+              <div className={styles.testimonialStars}>
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} size={16} fill="currentColor" />
+                ))}
+              </div>
+              <blockquote className={styles.testimonialQuote}>
+                &ldquo;Proses penerbitan sangat profesional dan transparan. Buku saya terbit tepat 
+                waktu dengan kualitas editorial yang sangat baik. Sangat direkomendasikan untuk 
+                rekan-rekan dosen yang ingin menerbitkan karya ilmiah.&rdquo;
+              </blockquote>
+              <div className={styles.testimonialAuthor}>
+                <div className={styles.testimonialAvatar}>
+                  <span>NR</span>
+                </div>
+                <div>
+                  <span className={styles.testimonialName}>Dr. Nur Rahmawati, M.Pd.</span>
+                  <span className={styles.testimonialRole}>Dosen — Universitas Negeri Malang</span>
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
       {/* === CTA SECTION === */}
       <section className={styles.ctaSection}>
         <div className={styles.ctaInner}>
-          <ScrollReveal>
+          <ScrollReveal direction="scale">
             <h2 className={styles.ctaTitle}>
               Siap Menerbitkan<br />Karya Anda?
             </h2>
